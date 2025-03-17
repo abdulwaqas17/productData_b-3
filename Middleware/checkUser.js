@@ -24,6 +24,18 @@ const checker = async (req, res, next) => {
 
     if (allBrands.length < 1) {
 
+      let myBrand = await Brands.create({
+        brand,
+        email,
+        owner,
+      });
+
+      console.log(myBrand);
+      console.log('congratulation on new brand');
+      req.yourStatus = `Congratulation! ${owner} you create a new Brand`;
+
+      next();
+
      
         
     } else {
@@ -99,7 +111,7 @@ const checker = async (req, res, next) => {
 
       console.log(myBrand);
       console.log('congratulation on new brand');
-      req.yourStatus = "congratulation on new brand";
+      req.yourStatus = `Congratulation! ${owner} you create a new Brand`;
 
       next();
     } else if (emailIs == 'old' && brandIs == 'new') {
@@ -111,14 +123,14 @@ const checker = async (req, res, next) => {
 
       console.log(myBrand);
       console.log('congratulation on another brand');
-      req.yourStatus = "congratulation on another brand";
+      req.yourStatus = `Congratulation! ${owner} you create another Brand`;
 
       next();
     } else if (emailIs == 'old' && brandIs == 'old') {
-      req.yourStatus = 'congratulation on old brand';
+      req.yourStatus = `${owner}, you are using your old Brand.`;
       next();
     }else if (emailIs == 'new' && brandIs == 'old') {
-        return res.status(402).json("This brand name is already use");
+        return res.status(402).json(`${owner} this brand name is already use`);
     }
   } catch (err) {
     console.log(err);
