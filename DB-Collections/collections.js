@@ -1,5 +1,14 @@
+require('dotenv').config();  // .env file ko load karne ke liye
+
+const mongoURI = process.env.MONGO_URI;  // .env se MongoDB URI le rahe hain
+
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://waqas:waqas17@cluster0.ca47n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+
+mongoose.connect(mongoURI).then(() => {
+    console.log("✅ MongoDB Connected Successfully!");
+  }).catch(err => {
+    console.error("❌ MongoDB Connection Error:", err);
+  });
 
 
 // SHEMA FOR PRODUCTS

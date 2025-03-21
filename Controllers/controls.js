@@ -43,6 +43,11 @@ const storeData = async (req,res)=> {
 
     
 }
+
+
+
+
+
 // FOR GETTING ALL THE PRODUCTS
 const getProducts = async (req,res) => {
 
